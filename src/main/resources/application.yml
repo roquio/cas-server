@@ -1,0 +1,26 @@
+# Application properties that need to be
+# embedded within the web application can be included here
+
+cas:
+  authn:
+    ldap:
+      - base-dn: dc=toutatice,dc=fr
+        bind-credential:
+        bind-dn:
+        ldap-url: ldap://opendj:1389
+        search-filter: uid={user}
+        type: DIRECT
+        dn-format: uid=%s,ou=personnes,dc=ent-bretagne,dc=fr
+#        disable-pooling: true
+
+  service-registry:
+    core:
+      init-from-json: true
+    json:
+      location: classpath:/services
+
+server:
+  port: 8443
+  ssl:
+    key-store: classpath:/etc/cas/thekeystore
+    key-store-password: changeit
